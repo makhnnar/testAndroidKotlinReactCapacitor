@@ -4,7 +4,7 @@ import './App.css';
 import main from 'kotlinnodelibrary';
 
 import { Plugins } from '@capacitor/core';
-const { DeviceProperties } = Plugins;
+const { DeviceProperties, OperationsPlugin } = Plugins;
 
 class App extends Component {
 
@@ -13,7 +13,9 @@ class App extends Component {
     this.state = {
       name: "Pedro",
       idDevice:"",
-      arrInts:[1,2,3,4,5,6,7,8,9]
+      arrInts:[1,2,3,4,5,6,7,8,9],
+      arrIntsAsString:'',
+      sumResult:0
     };
     DeviceProperties.getIdDevice()
       .then((value)=>{
@@ -31,11 +33,39 @@ class App extends Component {
     }catch(error){
       console.log("error: "+JSON.stringify(error));
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({arrIntsAsString: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    OperationsPlugin.sumValues(
+        {values:this.state.arrIntsAsString}
+    ).then((value)=>{
+        console.log(JSON.stringify(value));
+        this.setState({sumResult:value.result});
+    })
+    .catch((onError)=>{
+        console.log("sumResult: "+JSON.stringify(onError));
+    });
   }
 
   render() {
     return <div className="App">
         <p>{this.state.idDevice}</p>
+        <input 
+          type="text" 
+          value={this.state.arrIntsAsString} 
+          onChange={this.handleChange} 
+        />
+        <button onClick={this.handleSubmit}  >
+          SUMAR
+        </button>
+        <p>{this.state.sumResult}</p>
     </div>;
   }
 }
