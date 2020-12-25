@@ -15,7 +15,8 @@ class App extends Component {
       idDevice:"",
       arrInts:[1,2,3,4,5,6,7,8,9],
       arrIntsAsString:'',
-      sumResult:0
+      sumResult:0,
+      fromNative:false
     };
     DeviceProperties.getIdDevice()
       .then((value)=>{
@@ -25,16 +26,9 @@ class App extends Component {
       .catch((onError)=>{
         console.log("idDivice: "+JSON.stringify(onError));
       });
-    try{
-      console.log("main: "+JSON.stringify(main));
-      console.log("getRandomNumber: "+main.getMain().getRandomNumber());
-      console.log("arrInts: "+JSON.stringify(this.state.arrInts))
-      console.log("sumValues: "+main.getMain().sumValues(this.state.arrInts));
-    }catch(error){
-      console.log("error: "+JSON.stringify(error));
-    }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleChange(event) {
@@ -43,20 +37,52 @@ class App extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    OperationsPlugin.sumValues(
-        {values:this.state.arrIntsAsString}
-    ).then((value)=>{
-        console.log(JSON.stringify(value));
-        this.setState({sumResult:value.result});
-    })
-    .catch((onError)=>{
-        console.log("sumResult: "+JSON.stringify(onError));
+    if(this.state.fromNative){
+      OperationsPlugin.sumValues(
+          {values:this.state.arrIntsAsString}
+      ).then((value)=>{
+          console.log("From native: "+JSON.stringify(value));
+          this.setState({sumResult:value.result});
+      })
+      .catch((onError)=>{
+          console.log("sumResult: "+JSON.stringify(onError));
+      });
+    }else{
+      let value = main.getOperationsHelper().sumValuesInString(
+        this.state.arrIntsAsString
+      );
+      console.log("From js: "+value);
+      this.setState({
+        sumResult:value
+      });
+    }
+  }
+
+  handleInputChange(event) {
+    this.setState({
+      fromNative: event.target.checked
     });
   }
 
   render() {
     return <div className="App">
         <p>{this.state.idDevice}</p>
+        <div>
+          From Kotlin Native:
+          <input
+            name="isNative"
+            type="checkbox"
+            checked={this.state.fromNative}
+            onChange={this.handleInputChange} />
+        </div>
+        <div>
+          From Kotlin js:
+          <input
+            name="isJs"
+            type="checkbox"
+            checked={!this.state.fromNative}
+            onChange={this.handleInputChange} />
+        </div>
         <input 
           type="text" 
           value={this.state.arrIntsAsString} 
