@@ -6,6 +6,8 @@ import main from 'kotlinnodelibrary';
 import { Plugins } from '@capacitor/core';
 const { DeviceProperties, OperationsPlugin } = Plugins;
 
+//adding a little comment
+
 class App extends Component {
 
   constructor(props) {
