@@ -1,0 +1,19 @@
+{
+  "name": "testandroidkotlinreactcapacitor",
+  "version": "1.0.0",
+  "description": "An Android App using Kotlin, React js and Capacitor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makhnnar/testAndroidKotlinReactCapacitor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/makhnnar/testAndroidKotlinReactCapacitor/issues"
+  },
+  "homepage": "https://github.com/makhnnar/testAndroidKotlinReactCapacitor#readme"
+}
