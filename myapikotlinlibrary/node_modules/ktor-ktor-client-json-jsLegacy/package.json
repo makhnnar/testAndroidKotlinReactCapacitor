@@ -1,0 +1,12 @@
+{
+  "main": "ktor-ktor-client-json-jsLegacy.js",
+  "devDependencies": {},
+  "dependencies": {
+    "text-encoding": "0.7.0"
+  },
+  "peerDependencies": {},
+  "optionalDependencies": {},
+  "bundledDependencies": [],
+  "name": "ktor-ktor-client-json-jsLegacy",
+  "version": "1.4.0"
+}

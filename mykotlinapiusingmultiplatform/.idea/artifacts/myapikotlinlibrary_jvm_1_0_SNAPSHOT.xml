@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="myapikotlinlibrary-jvm-1.0-SNAPSHOT">
+    <output-path>C:\Users\phgom\Documents\GitHub\myapikotlinlibrary\build\libs</output-path>
+    <root id="archive" name="myapikotlinlibrary-jvm-1.0-SNAPSHOT.jar">
+      <element id="module-output" name="myapikotlinlibrary.jvmMain" />
+    </root>
+  </artifact>
+</component>

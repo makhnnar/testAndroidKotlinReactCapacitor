@@ -3,16 +3,16 @@
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var apiTestLibrary =  function (
-    _, 
-    Kotlin, 
-    $module$kotlinx_coroutines_core, 
-    $module$ktor_ktor_client_core_jsLegacy, 
-    $module$ktor_ktor_client_json_jsLegacy, 
-    $module$ktor_ktor_client_serialization_jsLegacy
-  ) {
+var apiTestLibrary = function(
+  _, 
+  Kotlin, 
+  $module$ktor_ktor_client_core_jsLegacy, 
+  $module$kotlinx_coroutines_core, 
+  $module$ktor_ktor_client_json_jsLegacy, 
+  $module$ktor_ktor_client_serialization_jsLegacy
+) {
+  'use strict';
   var $$importsForInline$$ = _.$$importsForInline$$ || (_.$$importsForInline$$ = {});
-  var MainScope = $module$kotlinx_coroutines_core.kotlinx.coroutines.MainScope;
   var Random = Kotlin.kotlin.random.Random_za3lpa$;
   var COROUTINE_SUSPENDED = Kotlin.kotlin.coroutines.intrinsics.COROUTINE_SUSPENDED;
   var CoroutineImpl = Kotlin.kotlin.coroutines.CoroutineImpl;
@@ -21,6 +21,7 @@ var apiTestLibrary =  function (
   var println = Kotlin.kotlin.io.println_s8jyv4$;
   var Unit = Kotlin.kotlin.Unit;
   var launch = $module$kotlinx_coroutines_core.kotlinx.coroutines.launch_s496o7$;
+  var MainScope = $module$kotlinx_coroutines_core.kotlinx.coroutines.MainScope;
   var JsonFeature = $module$ktor_ktor_client_json_jsLegacy.io.ktor.client.features.json.JsonFeature;
   var KotlinxSerializer = $module$ktor_ktor_client_serialization_jsLegacy.io.ktor.client.features.json.serializer.KotlinxSerializer;
   var HttpClient = $module$ktor_ktor_client_core_jsLegacy.io.ktor.client.HttpClient_f0veat$;
@@ -51,8 +52,8 @@ var apiTestLibrary =  function (
   function get$lambda($receiver) {
     return Unit;
   }
-  var scope;
   function Main() {
+    this.scope_0 = MainScope();
     this.jsonClient = HttpClient(Main$jsonClient$lambda);
   }
   Main.prototype.getRandomNumber = function () {
@@ -234,7 +235,7 @@ var apiTestLibrary =  function (
     };
   }
   Main.prototype.getHour = function () {
-    launch(scope, void 0, void 0, Main$getHour$lambda(this));
+    launch(this.scope_0, void 0, void 0, Main$getHour$lambda(this));
   };
   function Main$jsonClient$lambda$lambda($receiver) {
     $receiver.serializer = new KotlinxSerializer();
@@ -317,7 +318,6 @@ var apiTestLibrary =  function (
   _.Main = Main;
   _.TimeResponse = TimeResponse;
   _.OperationsHelper = OperationsHelper;
-  scope = MainScope();
   Kotlin.defineModule('testlibrarykotlinktor', _);
   return _;
 };
@@ -332,8 +332,8 @@ var instancer = function (root, factory) {
   factory(
     root,
     require('kotlin'),
-    require('kotlinx-coroutines-core'),
     require('ktor-ktor-client-core-jslegacy'),
+    require('kotlinx-coroutines-core'),
     require('ktor-ktor-client-json-jslegacy'), 
     require('ktor-ktor-client-serialization-jslegacy')
   );

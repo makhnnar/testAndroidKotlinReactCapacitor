@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import main from 'kotlinnodelibrary';
+import myapikotlinlibrary from 'myapikotlinlibrary';
 
 import { Plugins } from '@capacitor/core';
 const { DeviceProperties, OperationsPlugin } = Plugins;
@@ -47,16 +47,25 @@ class App extends Component {
           this.setState({sumResult:value.result});
       })
       .catch((onError)=>{
-          console.log("sumResult: "+JSON.stringify(onError));
+          console.log("Error: "+JSON.stringify(onError));
       });
     }else{
-      let value = main.getOperationsHelper().sumValuesInString(
+      let value = myapikotlinlibrary.getOperationsHelper().sumValues(
         this.state.arrIntsAsString
       );
       console.log("From js: "+value);
       this.setState({
         sumResult:value
       });
+      try{
+        myapikotlinlibrary.getMain().getHour(
+          (value)=>{
+            console.log("My Value from Kotlin Api: "+value);
+          }
+        );
+      }catch(error){
+        console.log("Error: "+JSON.stringify(error));
+      }
     }
   }
 

@@ -5,7 +5,7 @@ const test = require("./src/testjsktlibrary/test.js")
 
 console.log("FROM INDEX: "+JSON.stringify(test));
 
-console.log("FROM INDEX: "+JSON.stringify(test.getMain().getRandomNumber()));
+//console.log("FROM INDEX: "+JSON.stringify(test.getMain().getRandomNumber()));
 
 //const testInit = test();
 
